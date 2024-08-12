@@ -31,12 +31,12 @@ const Navbar = () => {
             }}
           >
             <img
-              src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632/818606114124305.60354e9639250.jpg"
+              src="https://i.postimg.cc/BQnyQkpn/818606114124305-60354e9639250-removebg-preview.png"
               alt="Logo"
               style={{
-                width: "80%",
+                width: "100%",
                 height: "auto",
-                maxHeight: "50px",
+                maxHeight: "60px",
                 objectFit: "contain",
               }}
             />
