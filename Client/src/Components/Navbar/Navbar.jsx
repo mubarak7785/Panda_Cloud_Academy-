@@ -13,12 +13,10 @@ import {
   Toolbar,
   Typography,
   useMediaQuery,
-  useTheme
+  useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-
-
-
+import { blue } from "@mui/material/colors";
 
 const Navbar = () => {
   const [value, setValue] = useState();
@@ -74,9 +72,27 @@ const Navbar = () => {
                   role="presentation"
                   onClick={toggleDrawer(false)}
                 >
-                  <List>
-                    {['AWS', 'DEVOPS', 'ABOUT US', 'CONTACT', 'Login', 'SignUp'].map((text) => (
-                      <ListItem button key={text} component={Link} to={`/${text.toLowerCase().replace(' ', '')}`}>
+                  <List sx={{ backgroundColor: "#063970", color: "white" }}>
+                    {[
+                      "AWS",
+                      "DEVOPS",
+                      "ABOUT US",
+                      "CONTACT",
+                      "LOGIN",
+                      "SIGNUP",
+                    ].map((text) => (
+                      <ListItem
+                        sx={{
+                          "&:hover": {
+                            backgroundColor: "lightpink",
+                            
+                          },
+                        }}
+                        button
+                        key={text}
+                        component={Link}
+                        to={`/${text.toLowerCase().replace(" ", "")}`}
+                      >
                         <Typography>{text}</Typography>
                       </ListItem>
                     ))}
