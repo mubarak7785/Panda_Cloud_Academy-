@@ -4,19 +4,31 @@ import {
   AppBar,
   Box,
   Button,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
   Tab,
   Tabs,
   Toolbar,
   Typography,
   useMediaQuery,
-  useTheme,
+  useTheme
 } from "@mui/material";
-import DrawerComp from "./DrawerComp";
+import MenuIcon from "@mui/icons-material/Menu";
+
+
+
 
 const Navbar = () => {
   const [value, setValue] = useState();
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
-  const isMatch = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  const toggleDrawer = (open) => () => {
+    setDrawerOpen(open);
+  };
 
   return (
     <React.Fragment>
@@ -41,11 +53,36 @@ const Navbar = () => {
               }}
             />
           </Box>
-
-          {isMatch ? (
+          {isMobile ? (
             <>
-              <Typography sx={{ fontSize: "2rem", paddingLeft: "10%" }}></Typography>
-              <DrawerComp />
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                onClick={toggleDrawer(true)}
+                sx={{ marginLeft: "auto" }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Drawer
+                anchor="right"
+                open={drawerOpen}
+                onClose={toggleDrawer(false)}
+              >
+                <Box
+                  sx={{ width: 250 }}
+                  role="presentation"
+                  onClick={toggleDrawer(false)}
+                >
+                  <List>
+                    {['AWS', 'DEVOPS', 'ABOUT US', 'CONTACT', 'Login', 'SignUp'].map((text) => (
+                      <ListItem button key={text} component={Link} to={`/${text.toLowerCase().replace(' ', '')}`}>
+                        <Typography>{text}</Typography>
+                      </ListItem>
+                    ))}
+                  </List>
+                </Box>
+              </Drawer>
             </>
           ) : (
             <>
@@ -59,25 +96,25 @@ const Navbar = () => {
                 <Tab
                   label="AWS"
                   component={Link}
-                  to="/aws" // Change to the actual path for AWS page
+                  to="/aws"
                   sx={{ textDecoration: "none", color: "inherit" }}
                 />
                 <Tab
                   label="DEVOPS"
                   component={Link}
-                  to="/devops" // Change to the actual path for DevOps page
+                  to="/devops"
                   sx={{ textDecoration: "none", color: "inherit" }}
                 />
                 <Tab
                   label="ABOUT US"
                   component={Link}
-                  to="/about" // Change to the actual path for About Us page
+                  to="/about"
                   sx={{ textDecoration: "none", color: "inherit" }}
                 />
                 <Tab
                   label="CONTACT"
                   component={Link}
-                  to="/contact" // Change to the actual path for Contact page
+                  to="/contact"
                   sx={{ textDecoration: "none", color: "inherit" }}
                 />
               </Tabs>
