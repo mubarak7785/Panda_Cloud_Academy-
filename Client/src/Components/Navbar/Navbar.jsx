@@ -41,7 +41,7 @@ const Navbar = () => {
             }}
           >
             <img
-              src="https://i.postimg.cc/BQnyQkpn/818606114124305-60354e9639250-removebg-preview.png"
+              src="https://i.postimg.cc/sD6ZCwym/Panda-Cloud-1-removebg-preview.png"
               alt="Logo"
               style={{
                 width: "100%",

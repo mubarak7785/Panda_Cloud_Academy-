@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Navbar from "./Components/Navbar/Navbar";
+import  Navbar  from './Components/Navbar/Navbar';
+
 import { Routes,Route } from "react-router-dom";
 
 import { Signup } from "./Components/Signup/Signup";
@@ -11,7 +12,7 @@ import { About } from "./Components/About/About";
 function App() {
   return (
     <>
-      <Navbar />
+      <Navbar/>
     
       <Container sx={{ paddingTop: '64px' }}> {/* Adjust padding based on Navbar height */}
         <Routes>
