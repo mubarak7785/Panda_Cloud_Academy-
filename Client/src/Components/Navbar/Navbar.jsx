@@ -6,20 +6,18 @@ import {
   Button,
   Drawer,
   IconButton,
+  Toolbar,
+  Tabs,
   List,
   ListItem,
-  Tab,
-  Tabs,
-  Toolbar,
   Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { blue } from "@mui/material/colors";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Navbar = () => {
-  const [value, setValue] = useState();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -60,19 +58,34 @@ const Navbar = () => {
                 onClick={toggleDrawer(true)}
                 sx={{ marginLeft: "auto" }}
               >
-                <MenuIcon />
+                {drawerOpen ? <CloseIcon /> : <MenuIcon />}
               </IconButton>
               <Drawer
-                anchor="right"
+                anchor="top"
                 open={drawerOpen}
                 onClose={toggleDrawer(false)}
+                sx={{
+                  "& .MuiDrawer-paper": {
+                    position: "absolute",
+                    top: "64px", // Adjust based on your AppBar height
+                    left: 0,
+                    right: 0,
+                    bottom: "auto", // Default to auto
+                    backgroundColor: "#063970",
+                    color: "white",
+                    boxShadow: "none",
+                    border: "none",
+                    height: "auto", // Adjust height based on content
+                    maxHeight: `calc(100vh - 64px)`, // Maximum height to prevent exceeding viewport
+                    overflowY: "auto", // Enable vertical scrolling if content exceeds max height
+                  },
+                }}
               >
                 <Box
-                  sx={{ width: 250 }}
                   role="presentation"
                   onClick={toggleDrawer(false)}
                 >
-                  <List sx={{ backgroundColor: "#063970", color: "white" }}>
+                  <List>
                     {[
                       "AWS",
                       "DEVOPS",
@@ -85,7 +98,6 @@ const Navbar = () => {
                         sx={{
                           "&:hover": {
                             backgroundColor: "lightpink",
-                            
                           },
                         }}
                         button

@@ -1,7 +1,7 @@
 import React from 'react'
-
+import "./Signup.css"
 export const Signup = () => {
   return (
-    <div>hhhh</div>
+    <div className='si' >hhhh</div>
   )
 }
