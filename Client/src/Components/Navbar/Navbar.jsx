@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -20,7 +21,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [value, setValue] = useState(0); // Add state for Tabs
+  const [value, setValue] = useState(0);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -28,9 +29,13 @@ const Navbar = () => {
     setDrawerOpen(open);
   };
 
+  const handleOptionClick = () => {
+    setDrawerOpen(false); // Close the drawer when an option is clicked
+  };
+
   return (
     <React.Fragment>
-      <AppBar sx={{ background: "#063970" }}>
+      <AppBar sx={{ background: "#063970", zIndex: 1300 }}>
         <Toolbar>
           <Box
             sx={{
@@ -56,8 +61,8 @@ const Navbar = () => {
               <IconButton
                 edge="start"
                 color="inherit"
-                aria-label="menu"
-                onClick={toggleDrawer(true)}
+                aria-label={drawerOpen ? "close" : "menu"}
+                onClick={toggleDrawer(!drawerOpen)}
                 sx={{ marginLeft: "auto" }}
               >
                 {drawerOpen ? <CloseIcon /> : <MenuIcon />}
@@ -65,50 +70,49 @@ const Navbar = () => {
               <Drawer
                 anchor="top"
                 open={drawerOpen}
-                onClose={toggleDrawer(false)}
+                onClose={() => setDrawerOpen(false)} // Close drawer when clicking outside or pressing ESC
                 sx={{
                   "& .MuiDrawer-paper": {
                     position: "absolute",
                     top: "64px", // Adjust based on your AppBar height
                     left: 0,
                     right: 0,
-                    bottom: "auto", // Default to auto
                     backgroundColor: "#063970",
                     color: "white",
                     boxShadow: "none",
                     border: "none",
-                    height: "auto", // Adjust height based on content
-                    maxHeight: `calc(100vh - 64px)`, // Maximum height to prevent exceeding viewport
-                    overflowY: "auto", // Enable vertical scrolling if content exceeds max height
+                    maxHeight: "calc(100vh - 64px)", // Adjust height based on content
+                    overflowY: "auto",
+                    padding: "16px", // Add padding for spacing
                   },
                 }}
               >
-                <Box role="presentation" onClick={toggleDrawer(false)}>
-                  <List>
-                    {[
-                      "AWS",
-                      "DEVOPS",
-                      "ABOUT US",
-                      "CONTACT",
-                      "LOGIN",
-                      "SIGNUP",
-                    ].map((text) => (
-                      <ListItem
-                        sx={{
-                          "&:hover": {
-                            backgroundColor: "lightpink",
-                          },
-                        }}
-                        button
-                        key={text}
-                        component={Link}
-                        to={`/${text.toLowerCase().replace(" ", "")}`}
-                      >
-                        <Typography>{text}</Typography>
-                      </ListItem>
-                    ))}
-                  </List>
-                </Box>
+                <List >
+                  {[
+                    "Amazon Web Services (AWS)",
+                    "Devops",
+                    "About Us",
+                    "Contact",
+                    "Login",
+                    "Signup",
+                  ].map((text) => (
+                    <ListItem
+                     
+                      sx={{
+                        "&:hover": {
+                          backgroundColor: "lightpink",
+                        },
+                      }}
+                      button
+                      key={text}
+                      component={Link}
+                      to={`/${text.toLowerCase().replace(" ", "")}`}
+                      onClick={handleOptionClick} // Close drawer when an option is clicked
+                    >
+                      <Typography>{text}</Typography>
+                    </ListItem>
+                  ))}
+                </List>
               </Drawer>
             </>
           ) : (
