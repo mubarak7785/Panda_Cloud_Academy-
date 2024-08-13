@@ -4,21 +4,23 @@ import {
   AppBar,
   Box,
   Button,
-  Drawer,
-  IconButton,
   Toolbar,
   Tabs,
+  Drawer,
+  IconButton,
   List,
   ListItem,
   Typography,
   useMediaQuery,
   useTheme,
+  Tab,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [value, setValue] = useState(0); // Add state for Tabs
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -81,10 +83,7 @@ const Navbar = () => {
                   },
                 }}
               >
-                <Box
-                  role="presentation"
-                  onClick={toggleDrawer(false)}
-                >
+                <Box role="presentation" onClick={toggleDrawer(false)}>
                   <List>
                     {[
                       "AWS",
