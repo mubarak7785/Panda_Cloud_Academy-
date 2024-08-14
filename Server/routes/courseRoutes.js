@@ -61,6 +61,7 @@ courseRouter.get('/courses', courseController.getCourses);
  */
 courseRouter.get('/courses/:id', courseController.getCourseById);
 
+
 // Protected routes
 
 /**

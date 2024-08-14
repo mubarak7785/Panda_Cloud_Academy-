@@ -1,5 +1,3 @@
-// controllers/reviewController.js
-
 const Review = require('../models/Review');
 const Course = require('../models/Course'); // Assuming you have a Course model
 const User = require('../models/User'); // Assuming you have a User model
